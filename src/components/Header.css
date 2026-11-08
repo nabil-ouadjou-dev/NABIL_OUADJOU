@@ -1,0 +1,63 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* so sections aren't hidden under the floating header */
+section {
+  scroll-margin-top: 100px;
+}
+
+.floating-header {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  width: max-content;
+  max-width: calc(100% - 24px);
+  padding: 6px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  transition: box-shadow 0.3s ease;
+}
+
+.floating-header.scrolled {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.floating-header nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.floating-header nav a {
+  padding: 10px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  transition: background 0.2s, color 0.2s;
+}
+
+.floating-header nav a:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.floating-header nav a.active {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .floating-header nav a {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --bg: #f6f3ee;
+  --ink: #111111;
+  --muted: #5d5a55;
+  --accent: #c8613a;
+  --line: rgba(17, 17, 17, 0.12);
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 110px clamp(20px, 4vw, 56px) 0; /* top space for the floating header */
+  background:
+    radial-gradient(60% 50% at 85% 10%, rgba(200, 97, 58, 0.16), transparent 70%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* ---------- top row ---------- */
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22a559;
+  box-shadow: 0 0 0 0 rgba(34, 165, 89, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.meta {
+  color: var(--muted);
+}
+
+/* ---------- the name ---------- */
+.hero-name {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Inter", sans-serif;
+  font-weight: 800;
+  /* sized so the longer line (OUADJOU) fills the width, and both lines fit the screen height */
+  font-size: clamp(3.5rem, min(17.5vw, 27svh), 22rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.word {
+  display: block;
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40%);
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 80ms + 100ms);
+  transition: color 0.2s, transform 0.3s;
+}
+
+.letter:hover {
+  color: var(--accent);
+}
+
+/* ---------- bottom block ---------- */
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 24px 48px;
+  align-items: start;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.role {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.role em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.intro {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.cta {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn.primary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn.ghost {
+  border-color: var(--line);
+}
+
+/* ---------- marquee ---------- */
+.marquee {
+  margin: 0 calc(-1 * clamp(20px, 4vw, 56px));
+  padding: 18px 0;
+  background: var(--ink);
+  color: #fff;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 32px;
+  animation: scroll 28s linear infinite;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.track i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ---------- animations ---------- */
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 165, 89, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 165, 89, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .track,
+  .dot {
+    animation: none;
+  }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 96px;
+  }
+
+  .hero-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    grid-column: 1;
+  }
+
+  .hero-name {
+    font-size: 17.5vw; /* on phones, width is the limit, not height */
+  }
+}
