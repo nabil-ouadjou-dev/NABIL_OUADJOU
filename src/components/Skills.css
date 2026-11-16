@@ -1,0 +1,133 @@
+.skills {
+  padding: 120px clamp(20px, 4vw, 56px) 110px;
+  background: var(--ink, #111);
+  color: var(--bg, #f6f3ee);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ---------- heading ---------- */
+.skills-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 56px;
+}
+
+.skills-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(246, 243, 238, 0.6);
+}
+
+.skills-head h2 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.5rem, 13vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+/* ---------- cards ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  padding: 32px;
+  border: 1px solid rgba(246, 243, 238, 0.14);
+  border-radius: 24px;
+  background: rgba(246, 243, 238, 0.03);
+
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s ease var(--delay, 0ms),
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0ms),
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.skill-card.in {
+  opacity: 1;
+  transform: none;
+}
+
+.skill-card:hover {
+  border-color: var(--accent, #c8613a);
+  background: rgba(200, 97, 58, 0.07);
+}
+
+.skill-card header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.skill-card h3 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.skill-num {
+  order: 2;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1rem;
+  color: var(--accent, #c8613a);
+}
+
+/* ---------- list ---------- */
+.skill-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-card li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid rgba(246, 243, 238, 0.12);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s, padding-left 0.25s;
+}
+
+.skill-card li i {
+  font-style: normal;
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition: opacity 0.2s, transform 0.25s;
+}
+
+.skill-card li:hover {
+  padding-left: 8px;
+  color: var(--accent, #c8613a);
+}
+
+.skill-card li:hover i {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skill-card li,
+  .skill-card li i {
+    transition: none;
+  }
+}
